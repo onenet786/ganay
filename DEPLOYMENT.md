@@ -27,30 +27,22 @@ Ensure Python 3 is installed on your Linux server (required for `yt-dlp` to exec
 
 ---
 
-## Step 1: Update API URLs in Frontend
+## Step 1: Configure the API URL for Frontend
 
-Currently, the backend URL is hardcoded in several React files pointing to a local IP (`192.168.19.32`). You must change these to point to your production server's API domain (e.g. `https://api.yourdomain.com` or `https://yourdomain.com/api`).
+The React frontend has been configured to check Vite's environment variables (`import.meta.env.VITE_API_URL`) at build time. By default, it falls back to your local development server (`http://192.168.19.32:5000`).
 
-Update the `BACKEND_URL` variable in the following files:
-* [usePlayerStore.ts](file:///d:/GIT-HUB/Ganay/frontend/src/store/usePlayerStore.ts#L52)
-* [Collections.tsx](file:///d:/GIT-HUB/Ganay/frontend/src/pages/Collections.tsx#L18)
-* [Home.tsx](file:///d:/GIT-HUB/Ganay/frontend/src/pages/Home.tsx#L24)
-* [Search.tsx](file:///d:/GIT-HUB/Ganay/frontend/src/pages/Search.tsx#L120)
-
-### Example Modification
-```typescript
-// Replace:
-// const BACKEND_URL = 'http://192.168.19.32:5000';
-
-// With your production API endpoint:
-const BACKEND_URL = 'https://api.yourdomain.com'; // or 'https://yourdomain.com/api'
-```
+To point the frontend to your hosting server's API, you can either:
+1. Create a `.env.production` file in the `frontend/` directory with:
+   ```env
+   VITE_API_URL=https://api.yourdomain.com
+   ```
+2. Or supply it directly when running the build command in **Step 2**.
 
 ---
 
 ## Step 2: Build the Frontend
 
-On your local machine (or CI/CD pipeline), compile the React frontend:
+On your local machine, compile the React frontend:
 
 1. Navigate to the frontend directory:
    ```bash
@@ -60,9 +52,19 @@ On your local machine (or CI/CD pipeline), compile the React frontend:
    ```bash
    npm install
    ```
-3. Build the production package:
-   ```bash
-   npm run build
+3. Build the production package, passing your hosting server's API URL:
+   - **On Linux / macOS**:
+     ```bash
+     VITE_API_URL=https://api.yourdomain.com npm run build
+     ```
+   - **On Windows (PowerShell)**:
+     ```powershell
+     $env:VITE_API_URL="https://api.yourdomain.com"; npm run build
+     ```
+   - **If you created a `.env.production` file**:
+     ```bash
+     npm run build
+     ```
    ```
 This will generate a `dist` folder inside `frontend/dist/`. This static folder contains the files you will upload to aaPanel for the website.
 
