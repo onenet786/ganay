@@ -1,0 +1,15 @@
+{
+  "name": "naghma-app",
+  "version": "1.0.0",
+  "description": "Naghma Classic Pakistani Music Discovery & Streaming App",
+  "scripts": {
+    "setup": "npm install --prefix backend && npm run setup:ytdlp --prefix backend && npm install --prefix frontend",
+    "seed": "npm run seed --prefix backend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev": "npx concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
