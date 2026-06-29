@@ -206,7 +206,7 @@ const SEED_SONGS = [
 
 const SEED_COLLECTIONS = [
   {
-    id: 'coll_mehdi_hassan_ghazals',
+    id: '8c89b252-8fa3-4318-912f-68f4e64ee810',
     name: "Mehdi Hassan's Greatest Ghazals",
     description: 'Immerse yourself in the soulful rendering of the King of Ghazal, featuring timeless poetry of Faiz, Ghalib, and Faraz.',
     cover_image_url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500&auto=format&fit=crop&q=60',
@@ -214,7 +214,7 @@ const SEED_COLLECTIONS = [
     songIds: ['H-xRmg3aCeg', 'yv6Fm60w6vA', 'Z3uO2yU7rC4', '3FvYmJk82d0']
   },
   {
-    id: 'coll_noor_jehan_classics',
+    id: 'b1a201c1-4df2-421b-be4c-cd14c356f912',
     name: 'Madam Noor Jehan Film Classics',
     description: 'Timeless cinematic masterpieces sung by Malika-e-Taranum (Queen of Melody) Noor Jehan, spanning five decades of Lollywood.',
     cover_image_url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&auto=format&fit=crop&q=60',
@@ -222,7 +222,7 @@ const SEED_COLLECTIONS = [
     songIds: ['E8S6gBfG2Jc', 'NnK9m2tPcr8', 'uAezbL4r38c', 'Z-E6t8jWnE0']
   },
   {
-    id: 'coll_golden_qawwalis',
+    id: '5d8a9e70-a352-4467-bc18-9b8bfe6cd314',
     name: 'Golden Era Qawwalis',
     description: 'Ecstatic Sufi devotional qawwalis by Nusrat Fateh Ali Khan and the legendary Sabri Brothers.',
     cover_image_url: 'https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=500&auto=format&fit=crop&q=60',
@@ -230,7 +230,7 @@ const SEED_COLLECTIONS = [
     songIds: ['4Z8H_h6X_oI', '8_2aI4_hFfA', '1G6_3Uo8X_w', 'YvW2Gk9Z_sY']
   },
   {
-    id: 'coll_ptv_nostalgia',
+    id: '6e74f810-b91c-43f0-8c2f-efab9c6c2105',
     name: 'PTV Nostalgia & Ghazal Classics',
     description: 'Nostalgic tracks from the Golden Era of Pakistan Television (PTV) broadcasts, including Iqbal Bano, Ghulam Ali, and Nayyara Noor.',
     cover_image_url: 'https://images.unsplash.com/photo-1487180142328-0c4e37023af5?w=500&auto=format&fit=crop&q=60',
@@ -238,7 +238,7 @@ const SEED_COLLECTIONS = [
     songIds: ['n9r3hW1cR9s', 'vLpxxG98j7A', 'yD4_1U9M88I', 'FfVv3t5xJ-I']
   },
   {
-    id: 'coll_60s_films',
+    id: 'e2a4cd50-d7a8-42bc-9d22-1d54e6fe8901',
     name: 'Lollywood Golden 60s & 70s',
     description: 'Upbeat and nostalgic cinematic highlights from Ahmed Rushdi, Alamgir, and Runa Laila.',
     cover_image_url: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=500&auto=format&fit=crop&q=60',
