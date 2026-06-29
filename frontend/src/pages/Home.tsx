@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { usePlayerStore } from '../store/usePlayerStore';
+import { usePlayerStore, BACKEND_URL } from '../store/usePlayerStore';
 import type { Song } from '../store/usePlayerStore';
 import CollectionCard from '../components/CollectionCard';
 import type { Collection } from '../components/CollectionCard';
@@ -20,16 +20,6 @@ const CLASSIC_SINGERS = [
   { name: "Iqbal Bano", urdu: "اقبال بانو", searchQuery: "Iqbal Bano classic", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&auto=format&fit=crop&q=80" },
   { name: "Nayyara Noor", urdu: "نیرہ نور", searchQuery: "Nayyara Noor song", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80" }
 ];
-
-const isCapacitor = typeof window !== 'undefined' && 
-  ((window as any).Capacitor || window.location.protocol === 'capacitor:' || (window.location.hostname === 'localhost' && !window.location.port));
-
-const BACKEND_URL = import.meta.env.VITE_API_URL || 
-  (isCapacitor 
-    ? 'http://192.168.19.32:5001' 
-    : (typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
-      ? `http://${window.location.hostname}:5001` 
-      : 'http://localhost:5001'));
 
 export default function Home({ setActiveTab, setSelectedCollectionId, setSearchQuery }: HomeProps) {
   const [collections, setCollections] = useState<Collection[]>([]);

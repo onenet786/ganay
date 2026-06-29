@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { usePlayerStore } from '../store/usePlayerStore';
+import { usePlayerStore, BACKEND_URL } from '../store/usePlayerStore';
 import type { Song } from '../store/usePlayerStore';
 import SongCard from '../components/SongCard';
 import { Search as SearchIcon, Shuffle, X } from 'lucide-react';
@@ -117,15 +117,7 @@ const MOODS: MoodCategory[] = [
   }
 ];
 
-const isCapacitor = typeof window !== 'undefined' && 
-  ((window as any).Capacitor || window.location.protocol === 'capacitor:' || (window.location.hostname === 'localhost' && !window.location.port));
 
-const BACKEND_URL = import.meta.env.VITE_API_URL || 
-  (isCapacitor 
-    ? 'http://192.168.19.32:5001' 
-    : (typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
-      ? `http://${window.location.hostname}:5001` 
-      : 'http://localhost:5001'));
 
 export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
   const { playSong } = usePlayerStore();

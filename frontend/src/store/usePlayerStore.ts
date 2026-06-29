@@ -67,9 +67,9 @@ interface PlayerState {
 const isCapacitor = typeof window !== 'undefined' && 
   ((window as any).Capacitor || window.location.protocol === 'capacitor:' || (window.location.hostname === 'localhost' && !window.location.port));
 
-const BACKEND_URL = import.meta.env.VITE_API_URL || 
+export const BACKEND_URL = import.meta.env.VITE_API_URL || 
   (isCapacitor 
-    ? 'http://192.168.19.32:5001' 
+    ? 'https://naghma.binishaqsoft.com' 
     : (typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
       ? `http://${window.location.hostname}:5001` 
       : 'http://localhost:5001'));
