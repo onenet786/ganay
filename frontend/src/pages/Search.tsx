@@ -170,17 +170,49 @@ export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
     }
   }
 
-  // Surprise Me / Play Random Song
+  // Extended Surprise Me / Build a surprise radio station queue
   const handleSurpriseMe = async () => {
     setLoading(true);
+    setError(null);
     try {
+      // 1. Get a random seed song
       const res = await fetch(`${BACKEND_URL}/api/discover`);
       if (!res.ok) throw new Error('Failed to discover random song');
-      const song = await res.json();
-      playSong(song);
+      const seedSong: Song = await res.json();
+
+      // 2. Query related songs by the same singer to build an auto-radio queue
+      let queueContext: Song[] = [seedSong];
+      try {
+        const relatedRes = await fetch(`${BACKEND_URL}/api/singer/${encodeURIComponent(seedSong.singer_name)}`);
+        if (relatedRes.ok) {
+          const relatedSongs: Song[] = await relatedRes.json();
+          // Filter out the seed song to avoid duplicate, and merge
+          const otherSongs = relatedSongs.filter(s => s.id !== seedSong.id);
+          queueContext = [seedSong, ...otherSongs];
+        }
+      } catch (relatedErr) {
+        console.warn('Could not load related tracks for surprise radio:', relatedErr);
+      }
+
+      // If we couldn't get any related songs by singer, fall back to trending as queue context
+      if (queueContext.length <= 1) {
+        try {
+          const trendingRes = await fetch(`${BACKEND_URL}/api/trending`);
+          if (trendingRes.ok) {
+            const trendingSongs: Song[] = await trendingRes.json();
+            const otherSongs = trendingSongs.filter(s => s.id !== seedSong.id);
+            queueContext = [seedSong, ...otherSongs];
+          }
+        } catch (trendErr) {
+          console.warn('Trending fallback failed:', trendErr);
+        }
+      }
+
+      // 3. Play the seed song with the complete contextual surprise radio queue
+      playSong(seedSong, queueContext);
     } catch (err) {
       console.error(err);
-      setError('Could not discover a random song right now.');
+      setError('Could not discover a random song right now. Make sure backend is running.');
     } finally {
       setLoading(false);
     }
@@ -407,6 +439,36 @@ export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
                 </button>
               )}
             </div>
+
+            {/* Quick Singers Selection */}
+            <div className="flex flex-col gap-2 pt-1">
+              <span className="text-[10px] text-gold-warm/75 font-semibold uppercase tracking-wider">
+                Quick Search by Singer:
+              </span>
+              <div className="flex items-center gap-2 overflow-x-auto pb-1.5 scrollbar-thin max-w-4xl">
+                {[
+                  'Noor Jehan', 'Mehdi Hassan', 'Nusrat Fateh Ali Khan', 'Ghulam Ali', 'Nayyara Noor',
+                  'Lata Mangeshkar', 'Kishore Kumar', 'Mohammad Rafi', 'Asha Bhosle', 'Jagjit Singh'
+                ].map((singer) => (
+                  <button
+                    key={singer}
+                    onClick={() => {
+                      setSearchQuery(singer);
+                      if (searchInputRef.current) {
+                        searchInputRef.current.value = singer;
+                      }
+                    }}
+                    className={`px-3 py-1 rounded-full text-[10px] font-medium font-sans border transition-all flex-shrink-0 ${
+                      searchQuery.toLowerCase() === singer.toLowerCase()
+                        ? 'bg-emerald-deep text-gold-warm border-gold-warm font-semibold'
+                        : 'bg-charcoal-light/30 border-gold-warm/15 text-cream-white/60 hover:border-gold-warm/40 hover:text-cream-white'
+                    }`}
+                  >
+                    🎤 {singer}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -445,7 +507,7 @@ export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {songs.map((song) => (
-                <SongCard key={song.id} song={song} layout="grid" />
+                <SongCard key={song.id} song={song} layout="grid" contextQueue={songs} />
               ))}
             </div>
           </section>

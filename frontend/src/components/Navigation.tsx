@@ -1,4 +1,4 @@
-import { Home, Search, Library, Music } from 'lucide-react';
+import { Home, Search, Library, Music, ListMusic } from 'lucide-react';
 
 interface NavigationProps {
   activeTab: string;
@@ -10,6 +10,7 @@ export default function Navigation({ activeTab, setActiveTab }: NavigationProps)
     { id: 'home', label: 'Home', icon: Home },
     { id: 'search', label: 'Search', icon: Search },
     { id: 'collections', label: 'Collections', icon: Library },
+    { id: 'playlists', label: 'Playlists', icon: ListMusic },
   ];
 
   return (

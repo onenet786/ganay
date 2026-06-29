@@ -14,6 +14,13 @@ export interface Song {
   archive_stream_url?: string | null;
 }
 
+export interface Playlist {
+  id: string;
+  name: string;
+  songs: Song[];
+  createdAt: string;
+}
+
 interface PlayerState {
   currentSong: Song | null;
   isPlaying: boolean;
@@ -30,10 +37,11 @@ interface PlayerState {
   isLoadingStream: boolean;
   error: string | null;
   playbackRetryCount: number;
+  playlists: Playlist[];
 
   // Actions
   initAudio: () => void;
-  playSong: (song: Song) => Promise<void>;
+  playSong: (song: Song, contextQueue?: Song[]) => Promise<void>;
   togglePlay: () => void;
   next: () => void;
   prev: () => void;
@@ -47,6 +55,13 @@ interface PlayerState {
   setRepeatMode: (mode: 'none' | 'one' | 'all') => void;
   setFullScreen: (isFull: boolean) => void;
   clearQueue: () => void;
+  
+  // Playlist actions
+  loadPlaylists: () => void;
+  createPlaylist: (name: string) => void;
+  deletePlaylist: (playlistId: string) => void;
+  addSongToPlaylist: (playlistId: string, song: Song) => void;
+  removeSongFromPlaylist: (playlistId: string, songId: string) => void;
 }
 
 const BACKEND_URL = import.meta.env.VITE_API_URL || 
@@ -71,8 +86,12 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   isLoadingStream: false,
   error: null,
   playbackRetryCount: 0,
+  playlists: [],
 
   initAudio: () => {
+    // Load playlists on app startup
+    get().loadPlaylists();
+
     if (typeof window === 'undefined' || audioNode) return;
 
     audioNode = new Audio();
@@ -133,9 +152,18 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     });
   },
 
-  playSong: async (song: Song) => {
+  playSong: async (song: Song, contextQueue?: Song[]) => {
     get().initAudio();
     if (!audioNode) return;
+
+    // Slice contextQueue to build automatic Autoplay queue
+    if (contextQueue && contextQueue.length > 0) {
+      const idx = contextQueue.findIndex(s => s.id === song.id);
+      if (idx !== -1) {
+        const remaining = contextQueue.slice(idx + 1);
+        set({ queue: remaining });
+      }
+    }
 
     const prevSong = get().currentSong;
     const isNewSong = !prevSong || prevSong.id !== song.id;
@@ -327,5 +355,59 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
 
   clearQueue: () => {
     set({ queue: [] });
+  },
+
+  loadPlaylists: () => {
+    if (typeof window === 'undefined') return;
+    const stored = localStorage.getItem('naghma_playlists');
+    if (stored) {
+      try {
+        set({ playlists: JSON.parse(stored) });
+      } catch (e) {
+        console.error('Failed to parse playlists from localStorage');
+      }
+    }
+  },
+
+  createPlaylist: (name) => {
+    const playlists = get().playlists;
+    const newPlaylist: Playlist = {
+      id: crypto.randomUUID(),
+      name,
+      songs: [],
+      createdAt: new Date().toISOString()
+    };
+    const updated = [...playlists, newPlaylist];
+    set({ playlists: updated });
+    localStorage.setItem('naghma_playlists', JSON.stringify(updated));
+  },
+
+  deletePlaylist: (playlistId) => {
+    const updated = get().playlists.filter(p => p.id !== playlistId);
+    set({ playlists: updated });
+    localStorage.setItem('naghma_playlists', JSON.stringify(updated));
+  },
+
+  addSongToPlaylist: (playlistId, song) => {
+    const updated = get().playlists.map(p => {
+      if (p.id === playlistId) {
+        if (p.songs.some(s => s.id === song.id)) return p;
+        return { ...p, songs: [...p.songs, song] };
+      }
+      return p;
+    });
+    set({ playlists: updated });
+    localStorage.setItem('naghma_playlists', JSON.stringify(updated));
+  },
+
+  removeSongFromPlaylist: (playlistId, songId) => {
+    const updated = get().playlists.map(p => {
+      if (p.id === playlistId) {
+        return { ...p, songs: p.songs.filter(s => s.id !== songId) };
+      }
+      return p;
+    });
+    set({ playlists: updated });
+    localStorage.setItem('naghma_playlists', JSON.stringify(updated));
   }
 }));

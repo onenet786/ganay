@@ -172,6 +172,7 @@ export default function Collections({ selectedCollectionId, setSelectedCollectio
                   song={song} 
                   index={index} 
                   layout="list"
+                  contextQueue={activeCollection.songs}
                 />
               ))}
             </div>

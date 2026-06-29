@@ -225,6 +225,7 @@ export default function Home({ setActiveTab, setSelectedCollectionId, setSearchQ
               song={song} 
               index={index} 
               layout="list"
+              contextQueue={trendingSongs.slice(0, 6)}
             />
           ))}
         </div>

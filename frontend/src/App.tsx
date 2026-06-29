@@ -5,6 +5,7 @@ import MusicPlayer from './components/MusicPlayer';
 import Home from './pages/Home';
 import Search from './pages/Search';
 import Collections from './pages/Collections';
+import Playlists from './pages/Playlists';
 import { usePlayerStore } from './store/usePlayerStore';
 
 const queryClient = new QueryClient({
@@ -51,6 +52,10 @@ function AppContent() {
             selectedCollectionId={selectedCollectionId}
             setSelectedCollectionId={setSelectedCollectionId}
           />
+        );
+      case 'playlists':
+        return (
+          <Playlists />
         );
       default:
         return (
