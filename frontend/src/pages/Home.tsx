@@ -21,7 +21,10 @@ const CLASSIC_SINGERS = [
   { name: "Nayyara Noor", urdu: "نیرہ نور", searchQuery: "Nayyara Noor song", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&auto=format&fit=crop&q=80" }
 ];
 
-const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://192.168.19.32:5001';
+const BACKEND_URL = import.meta.env.VITE_API_URL || 
+  (typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
+    ? `http://${window.location.hostname}:5001` 
+    : 'http://localhost:5001');
 
 export default function Home({ setActiveTab, setSelectedCollectionId, setSearchQuery }: HomeProps) {
   const [collections, setCollections] = useState<Collection[]>([]);

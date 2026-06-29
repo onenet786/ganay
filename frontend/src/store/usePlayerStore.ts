@@ -49,7 +49,10 @@ interface PlayerState {
   clearQueue: () => void;
 }
 
-const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://192.168.19.32:5001';
+const BACKEND_URL = import.meta.env.VITE_API_URL || 
+  (typeof window !== 'undefined' && window.location.hostname !== 'localhost' 
+    ? `http://${window.location.hostname}:5001` 
+    : 'http://localhost:5001');
 let audioNode: HTMLAudioElement | null = null;
 
 export const usePlayerStore = create<PlayerState>((set, get) => ({
