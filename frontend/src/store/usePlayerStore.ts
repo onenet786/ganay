@@ -38,6 +38,7 @@ interface PlayerState {
   error: string | null;
   playbackRetryCount: number;
   playlists: Playlist[];
+  streamSource: 'youtube' | 'archive';
 
   // Actions
   initAudio: () => void;
@@ -55,6 +56,7 @@ interface PlayerState {
   setRepeatMode: (mode: 'none' | 'one' | 'all') => void;
   setFullScreen: (isFull: boolean) => void;
   clearQueue: () => void;
+  setStreamSource: (source: 'youtube' | 'archive') => void;
   
   // Playlist actions
   loadPlaylists: () => void;
@@ -92,6 +94,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   error: null,
   playbackRetryCount: 0,
   playlists: [],
+  streamSource: 'youtube',
 
   initAudio: () => {
     // Load playlists on app startup
@@ -209,6 +212,13 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
       audioNode.load();
       await audioNode.play();
       set({ isPlaying: true });
+
+      // Pre-fetch next song's stream URL in the background to ensure instant gapless playback!
+      const nextSong = get().queue[0];
+      if (nextSong && !nextSong.youtube_video_id.startsWith('archive_')) {
+        fetch(`${BACKEND_URL}/api/stream?videoId=${nextSong.youtube_video_id}`)
+          .catch(err => console.warn('Background pre-fetch failed:', err));
+      }
     } catch (err: any) {
       console.error('Playback setup failed:', err.message);
       
@@ -414,5 +424,9 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     });
     set({ playlists: updated });
     localStorage.setItem('naghma_playlists', JSON.stringify(updated));
+  },
+
+  setStreamSource: (source) => {
+    set({ streamSource: source });
   }
 }));

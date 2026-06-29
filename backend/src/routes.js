@@ -21,7 +21,7 @@ const MOOD_SEARCH_MAP = {
 
 // GET /api/search?q=...&decade=...&genre=...
 router.get('/search', async (req, res) => {
-  const { q, decade, genre, singer, mood, country } = req.query;
+  const { q, decade, genre, singer, mood, country, source } = req.query;
 
   try {
     // 1. Search local DB first
@@ -74,8 +74,13 @@ router.get('/search', async (req, res) => {
         ytQuery = `${countryPrefix} ${moodSuffix}`;
       }
 
-      console.log(`Performing live YouTube search for: "${ytQuery}"`);
-      const ytResults = await ytdlpService.searchSongs(ytQuery, { decade, genre });
+      console.log(`Performing live search [Source: ${source || 'youtube'}] for: "${ytQuery}"`);
+      let ytResults = [];
+      if (source === 'archive') {
+        ytResults = await ytdlpService.searchArchiveOrg(ytQuery);
+      } else {
+        ytResults = await ytdlpService.searchSongs(ytQuery, { decade, genre });
+      }
 
       // Save new songs in background so we cache them in our database
       const savedYtResults = [];

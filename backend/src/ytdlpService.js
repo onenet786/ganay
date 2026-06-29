@@ -30,7 +30,16 @@ class YtDlpService {
     console.log(`Cache miss. Resolving stream URL for video: ${videoId}`);
     try {
       const url = `https://www.youtube.com/watch?v=${videoId}`;
-      const args = ['-f', 'bestaudio', '--js-runtimes', `node:${process.execPath}`, '--get-url', url];
+      const args = [
+        '-f', 'bestaudio',
+        '--js-runtimes', `node:${process.execPath}`,
+        '--get-url',
+        '--no-playlist',
+        '--no-warnings',
+        '--no-call-home',
+        '--no-check-certificates',
+        url
+      ];
       
       const stdout = await execPromise(config.YTDLP_PATH, args);
       const streamUrl = stdout.trim();

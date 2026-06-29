@@ -120,7 +120,7 @@ const MOODS: MoodCategory[] = [
 
 
 export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
-  const { playSong } = usePlayerStore();
+  const { playSong, streamSource, setStreamSource } = usePlayerStore();
   const [songs, setSongs] = useState<Song[]>([]);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useState<string>('all');
@@ -129,7 +129,7 @@ export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
   
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Trigger search whenever query, mood, or country changes
+  // Trigger search whenever query, mood, country, or stream source changes
   useEffect(() => {
     // If no mood is selected, don't auto-fetch empty search
     if (!selectedMood && !searchQuery) {
@@ -142,7 +142,7 @@ export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
     }, 450); // Debounce API calls
 
     return () => clearTimeout(delayDebounceFn);
-  }, [searchQuery, selectedMood, selectedCountry]);
+  }, [searchQuery, selectedMood, selectedCountry, streamSource]);
 
   async function triggerSearch() {
     setLoading(true);
@@ -153,6 +153,7 @@ export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
       if (searchQuery) params.append('q', searchQuery);
       if (selectedMood) params.append('mood', selectedMood);
       if (selectedCountry && selectedCountry !== 'all') params.append('country', selectedCountry);
+      if (streamSource) params.append('source', streamSource);
 
       const res = await fetch(`${BACKEND_URL}/api/search?${params.toString()}`);
       if (!res.ok) throw new Error('Search failed');
@@ -435,6 +436,41 @@ export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
                   <X className="w-4 h-4" />
                 </button>
               )}
+            </div>
+
+            {/* Streaming Source Channel Selector */}
+            <div className="flex flex-col gap-2 pt-1">
+              <span className="text-[10px] text-gold-warm/75 font-semibold uppercase tracking-wider">
+                Select Stream Channel / Source:
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => setStreamSource('youtube')}
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold font-sans border transition-all flex items-center gap-1.5 ${
+                    streamSource === 'youtube'
+                      ? 'bg-red-600/20 border-red-500/50 text-red-200 shadow-md shadow-red-950/20'
+                      : 'bg-charcoal-light/30 border-gold-warm/15 text-cream-white/60 hover:border-gold-warm/40 hover:text-cream-white'
+                  }`}
+                >
+                  📺 YouTube (Full Catalog, HQ)
+                </button>
+                <button
+                  onClick={() => setStreamSource('archive')}
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold font-sans border transition-all flex items-center gap-1.5 ${
+                    streamSource === 'archive'
+                      ? 'bg-emerald-deep text-gold-warm border-gold-warm shadow-md shadow-emerald-950/20'
+                      : 'bg-charcoal-light/30 border-gold-warm/15 text-cream-white/60 hover:border-gold-warm/40 hover:text-cream-white'
+                  }`}
+                >
+                  📻 Archive.org (Instant Stream)
+                </button>
+                <button
+                  onClick={() => alert("Spotify Web API requires a Spotify Premium account subscription and user OAuth verification to play full tracks. Without it, Spotify API only allows playing 30-second preview clips. YouTube or Archive.org are recommended for full playback.")}
+                  className="px-3 py-1.5 rounded-lg text-[11px] font-semibold font-sans border bg-charcoal-light/30 border-gold-warm/15 text-cream-white/35 hover:border-gold-warm/40 hover:text-cream-white/60 transition-all flex items-center gap-1.5"
+                >
+                  🎵 Spotify Info
+                </button>
+              </div>
             </div>
 
             {/* Quick Singers Selection */}
