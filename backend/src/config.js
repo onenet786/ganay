@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 export const config = {
-  PORT: process.env.PORT || 5000,
+  PORT: process.env.PORT || 5001,
   DATABASE_URL: process.env.DATABASE_URL || '',
   REDIS_URL: process.env.REDIS_URL || '',
   YOUTUBE_API_KEY: process.env.YOUTUBE_API_KEY || '',

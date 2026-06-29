@@ -29,7 +29,7 @@ Ensure Python 3 is installed on your Linux server (required for `yt-dlp` to exec
 
 ## Step 1: Configure the API URL for Frontend
 
-The React frontend has been configured to check Vite's environment variables (`import.meta.env.VITE_API_URL`) at build time. By default, it falls back to your local development server (`http://192.168.19.32:5000`).
+The React frontend has been configured to check Vite's environment variables (`import.meta.env.VITE_API_URL`) at build time. By default, it falls back to your local development server (`http://192.168.19.32:5001`).
 
 To point the frontend to your hosting server's API, you can either:
 1. Create a `.env.production` file in the `frontend/` directory with:
@@ -94,7 +94,7 @@ This will generate a `dist` folder inside `frontend/dist/`. This static folder c
 ### 2. Configure the `.env` File
 Create or modify the `.env` file in the backend root directory:
 ```env
-PORT=5000
+PORT=5001
 NODE_ENV=production
 
 # Database Config (Leave empty to use local JSON file database)
@@ -136,7 +136,7 @@ Because `yt-dlp` is a Python executable, the Windows version (`yt-dlp.exe`) in t
    - **Project Name**: `ganay-backend`
    - **Run Command**: Choose `npm start` or specify `server.js` as the startup file.
    - **Node.js Version**: Select Node v18+ or v20+.
-   - **Port**: `5000` (Must match the `PORT` in your `.env` file)
+   - **Port**: `5001` (Must match the `PORT` in your `.env` file)
 4. Click **Submit**. The manager will automatically run `npm install` and start the Node process.
 
 ---
@@ -165,7 +165,7 @@ To ensure security (HTTPS) and avoid CORS issues, route your backend through a d
 2. Click on the newly created website, go to **SSL**, and generate a free Let's Encrypt certificate. Turn on **Force HTTPS**.
 3. Go to the site settings > **Reverse Proxy** > **Add reverse proxy**.
    - **Proxy Name**: `api-proxy`
-   - **Target URL**: `http://127.0.0.1:5000` (The address of the running Node.js service)
+   - **Target URL**: `http://127.0.0.1:5001` (The address of the running Node.js service)
    - **Sent Domain**: `$host`
 4. Click **Submit**.
 
@@ -175,7 +175,7 @@ If you want both frontend and backend on the same domain:
 2. Go to **SSL**, generate a Let's Encrypt certificate, and enable **Force HTTPS**.
 3. Go to site settings > **Reverse Proxy** > **Add reverse proxy**.
    - **Proxy Name**: `api-proxy`
-   - **Target URL**: `http://127.0.0.1:5000`
+   - **Target URL**: `http://127.0.0.1:5001`
    - **Path**: `/api` (Matches request paths starting with `/api`)
    - **Sent Domain**: `$host`
 4. Click **Submit**.
@@ -242,6 +242,8 @@ Whenever you make improvements or changes locally (such as fixing song links, up
 3. **Rebuild the Frontend (If client code changed)**:
    ```bash
    cd frontend
+   # Ensure devDependencies (like TypeScript/Vite) are installed on the server
+   npm install --include=dev
    npm run build
    # copy the new dist folder contents to the website's document root
    cp -r dist/* /www/wwwroot/yourdomain.com/

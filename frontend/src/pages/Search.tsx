@@ -117,7 +117,7 @@ const MOODS: MoodCategory[] = [
   }
 ];
 
-const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://192.168.19.32:5000';
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://192.168.19.32:5001';
 
 export default function Search({ searchQuery, setSearchQuery }: SearchProps) {
   const { playSong } = usePlayerStore();

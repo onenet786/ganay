@@ -15,7 +15,7 @@ interface CollectionDetail extends Collection {
   songs?: Song[];
 }
 
-const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://192.168.19.32:5000';
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://192.168.19.32:5001';
 
 export default function Collections({ selectedCollectionId, setSelectedCollectionId }: CollectionsProps) {
   const [collections, setCollections] = useState<Collection[]>([]);
