@@ -182,6 +182,76 @@ If you want both frontend and backend on the same domain:
 
 ---
 
+## Git Integration for Seamless Updates (Push & Pull)
+
+Instead of manually uploading zip files or copying folders via the aaPanel File Manager, it is highly recommended to use a Git repository (like GitHub, GitLab, or Gitea). This allows you to manage local development changes and pull updates onto your production server easily.
+
+### 1. Initialize Git Locally (Your PC)
+If you haven't already initialized Git in your project directory:
+1. Initialize the repository:
+   ```bash
+   git init
+   ```
+2. Create a `.gitignore` in your project root to exclude local configs, database files, and node packages:
+   ```gitignore
+   node_modules/
+   dist/
+   .env
+   backend/data/db.json
+   frontend/android/
+   ```
+3. Commit your changes:
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   ```
+4. Create a repository on GitHub (e.g., `github.com/username/naghma`) and link it:
+   ```bash
+   git remote add origin https://github.com/username/naghma.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+### 2. Set Up Git on the Production Server (aaPanel)
+1. SSH into your server (or open the **aaPanel Terminal**).
+2. Generate an SSH key on your server if using private repositories:
+   ```bash
+   ssh-keygen -t ed25519 -C "server@yourdomain.com"
+   cat ~/.ssh/id_ed25519.pub
+   ```
+   Add this public key to your GitHub repository's **Deploy Keys** with read-only access.
+3. Clone your repository directly into the server's web directory:
+   ```bash
+   git clone git@github.com:username/naghma.git /www/wwwroot/naghma
+   ```
+
+### 3. Workflow for Rolling Out Updates
+Whenever you make improvements or changes locally (such as fixing song links, updating lists, or adding features):
+1. **On your local computer (PC)**:
+   ```bash
+   git add .
+   git commit -m "feat: updated country filter and self-healing link database"
+   git push origin main
+   ```
+2. **On the production server (aaPanel)**:
+   Navigate to the repository folder and pull the latest changes:
+   ```bash
+   cd /www/wwwroot/naghma
+   git pull origin main
+   ```
+3. **Rebuild the Frontend (If client code changed)**:
+   ```bash
+   cd frontend
+   npm run build
+   # copy the new dist folder contents to the website's document root
+   cp -r dist/* /www/wwwroot/yourdomain.com/
+   ```
+4. **Restart the Backend Service (If server code changed)**:
+   - Go to aaPanel > **Website** > **Node Projects**.
+   - Find `ganay-backend` and click **Restart**.
+
+---
+
 ## Troubleshooting
 
 ### `yt-dlp` Streaming Failures
