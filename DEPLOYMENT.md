@@ -208,8 +208,7 @@ If you haven't already initialized Git in your project directory:
 4. Create a repository on GitHub (e.g., `github.com/username/naghma`) and link it:
    ```bash
    git remote add origin https://github.com/username/naghma.git
-   git branch -M main
-   git push -u origin main
+   git push -u origin master
    ```
 
 ### 2. Set Up Git on the Production Server (aaPanel)
@@ -231,13 +230,13 @@ Whenever you make improvements or changes locally (such as fixing song links, up
    ```bash
    git add .
    git commit -m "feat: updated country filter and self-healing link database"
-   git push origin main
+   git push origin master
    ```
 2. **On the production server (aaPanel)**:
    Navigate to the repository folder and pull the latest changes:
    ```bash
    cd /www/wwwroot/naghma
-   git pull origin main
+   git pull origin master
    ```
 3. **Rebuild the Frontend (If client code changed)**:
    ```bash

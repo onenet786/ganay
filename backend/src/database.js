@@ -51,7 +51,7 @@ class Database {
       console.log('Database Mode: PostgreSQL');
       this.pool = new Pool({
         connectionString: config.DATABASE_URL,
-        ssl: config.DATABASE_URL.includes('localhost') ? false : { rejectUnauthorized: false },
+        ssl: (config.DATABASE_URL.includes('localhost') || config.DATABASE_URL.includes('127.0.0.1')) ? false : { rejectUnauthorized: false },
       });
     } else {
       console.log('Database Mode: Local JSON File fallback');
