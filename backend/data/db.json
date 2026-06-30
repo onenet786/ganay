@@ -10,7 +10,7 @@
       "genre": "Film Song",
       "thumbnail_url": "https://img.youtube.com/vi/dOtqwZdhBkc/hqdefault.jpg",
       "duration_seconds": 734,
-      "play_count": 5,
+      "play_count": 6,
       "created_at": "2026-06-27T21:13:21.084Z"
     },
     {
@@ -101,7 +101,7 @@
       "genre": "Film Song",
       "thumbnail_url": "https://img.youtube.com/vi/ANptt7VMxXU/hqdefault.jpg",
       "duration_seconds": 210,
-      "play_count": 5,
+      "play_count": 6,
       "created_at": "2026-06-27T21:13:21.087Z"
     },
     {
@@ -179,7 +179,7 @@
       "genre": "Ghazal",
       "thumbnail_url": "https://img.youtube.com/vi/MWjaK_nW72E/hqdefault.jpg",
       "duration_seconds": 477,
-      "play_count": 4,
+      "play_count": 7,
       "created_at": "2026-06-27T21:13:21.088Z"
     },
     {
@@ -1544,7 +1544,7 @@
       "genre": "Film Song",
       "thumbnail_url": "https://img.youtube.com/vi/8A38tJmzlM0/hqdefault.jpg",
       "duration_seconds": 377,
-      "play_count": 0,
+      "play_count": 1,
       "created_at": "2026-06-27T21:31:50.586Z"
     },
     {
@@ -3000,7 +3000,7 @@
       "genre": "Film Song",
       "thumbnail_url": "https://img.youtube.com/vi/sp9QLx26ySI/hqdefault.jpg",
       "duration_seconds": 376,
-      "play_count": 0,
+      "play_count": 1,
       "created_at": "2026-06-27T21:45:54.046Z"
     },
     {
@@ -7968,6 +7968,175 @@
       "duration_seconds": 143,
       "play_count": 0,
       "created_at": "2026-06-29T12:30:47.592Z"
+    },
+    {
+      "id": "d92e880b-72a6-4216-8cc7-73eba1f953d3",
+      "youtube_video_id": "nkh2KkJPy2g",
+      "title": "CHAHAT MAIN KIYA DUNIYA DARI  - GUL BAHAR BANO - LOK VIRSA",
+      "singer_name": "PunjabiFolkMusic",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/nkh2KkJPy2g/hqdefault.jpg",
+      "duration_seconds": 555,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:07:47.433Z"
+    },
+    {
+      "id": "db86b413-440d-4cbc-80e0-de4e9fc60b11",
+      "youtube_video_id": "FnoWH7UbOUU",
+      "title": "Pakistani Wedding Karaoke Night // 60 Years of Bollywood in 4 Chords //TWSF",
+      "singer_name": "The Wedding Story Films",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/FnoWH7UbOUU/hqdefault.jpg",
+      "duration_seconds": 392,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:07:47.441Z"
+    },
+    {
+      "id": "261025c0-1c42-489f-9efc-0fe35e1903c1",
+      "youtube_video_id": "In3yneec2hk",
+      "title": "Tum Itna Jo Muskura Rahe Ho | Jagjit Singh Ghazals | Jagjit Singh Sad Ghazals | Arth | Kaifi Azmi",
+      "singer_name": "Saregama Ghazal",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Ghazal",
+      "thumbnail_url": "https://img.youtube.com/vi/In3yneec2hk/hqdefault.jpg",
+      "duration_seconds": 335,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:07:47.445Z"
+    },
+    {
+      "id": "b64e4909-4594-47b4-84cd-985bece82d7a",
+      "youtube_video_id": "OCCXUwKMH4s",
+      "title": "Coke Studio Season 12 | Daachi Waaliya | Hadiqa Kiani",
+      "singer_name": "Coke Studio Pakistan",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/OCCXUwKMH4s/hqdefault.jpg",
+      "duration_seconds": 489,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:07:47.448Z"
+    },
+    {
+      "id": "e11f7338-9d50-44a0-9e03-e0fe77aa3f63",
+      "youtube_video_id": "QYwQ-SBFrq4",
+      "title": "Akhiyaan Ch Toon Vasda | Surinder Kaur | Old Punjabi Songs | Punjabi Songs 2022",
+      "singer_name": "Saregama Punjabi",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/QYwQ-SBFrq4/hqdefault.jpg",
+      "duration_seconds": 247,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:07:47.454Z"
+    },
+    {
+      "id": "a8807961-f8e2-4037-9add-036db3fb333d",
+      "youtube_video_id": "xiA1D0QEHlQ",
+      "title": "Das Meriya Dilwarave with lyrics | ਦੱਸ ਮੇਰਿਆ ਦਿਲਬਰਾ ਵੇ | Punjabi Song | Mohammad Rafi & Asha Bhosle",
+      "singer_name": "Saregama Music",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/xiA1D0QEHlQ/hqdefault.jpg",
+      "duration_seconds": 404,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:07:47.458Z"
+    },
+    {
+      "id": "ef9eeb16-f8ab-49e4-8d89-c9dec4e9cbec",
+      "youtube_video_id": "YT7crTHjCAo",
+      "title": "DIL TO HAI DIL | दिल तो है दिल दिल का ऐतबार | Muqadar Ka Sikandar | Lata Mangeshkar | 70s Romantic",
+      "singer_name": "Sajeev kumar KV",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/YT7crTHjCAo/hqdefault.jpg",
+      "duration_seconds": 252,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:07:47.464Z"
+    },
+    {
+      "id": "32a7a91f-25df-4e8e-bbf0-ab8148507b38",
+      "youtube_video_id": "8c_e6jBWErI",
+      "title": "Chupke Chupke Raat Din/ Gulam Ali Gazals/Pratibha Singh Bhaghel/Call 9826076800",
+      "singer_name": "AG Events (Abhishek Gawde Musical Group)",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/8c_e6jBWErI/hqdefault.jpg",
+      "duration_seconds": 451,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:08:14.326Z"
+    },
+    {
+      "id": "b0f18d03-7d35-42f4-aba2-3ed990984df6",
+      "youtube_video_id": "Au83h0mpaUg",
+      "title": "Chupi Chupi Raatdin | Ghulam Ali Geener Ek Aashare | Ghulam Ali | Audio",
+      "singer_name": "Saregama Bengali",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/Au83h0mpaUg/hqdefault.jpg",
+      "duration_seconds": 282,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:08:14.337Z"
+    },
+    {
+      "id": "adea4271-e79a-4b7b-8779-7a5ebbdbba01",
+      "youtube_video_id": "xQsMn1kmJs4",
+      "title": "Hungama Hai Kyon Barpa | Shaam-E-Ghazal | Ghulam Ali | Romantic Ghazals | Sad Ghazals | Old Songs",
+      "singer_name": "Saregama Ghazal",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Ghazal",
+      "thumbnail_url": "https://img.youtube.com/vi/xQsMn1kmJs4/hqdefault.jpg",
+      "duration_seconds": 515,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:08:14.342Z"
+    },
+    {
+      "id": "543dc301-b27f-48e9-b395-4e0c97898a6e",
+      "youtube_video_id": "17u5-liDJWI",
+      "title": "Kapil Sharma his amazing voice sing a Ghulam Ali song chupke chupke raat din & Aamir Khan jamming",
+      "singer_name": "Bollywood Artist Bank Celebrity Management Company",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/17u5-liDJWI/hqdefault.jpg",
+      "duration_seconds": 91,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:08:14.348Z"
+    },
+    {
+      "id": "dc0d7568-305e-4d14-a249-53b5bf32ec7f",
+      "youtube_video_id": "vksEWbGlCwA",
+      "title": "Chupke Chupke Raat Din (Live) | Amrita Kaur | Virsa Heritage Revived (2024)",
+      "singer_name": "Amrita Kaur",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Film Song",
+      "thumbnail_url": "https://img.youtube.com/vi/vksEWbGlCwA/hqdefault.jpg",
+      "duration_seconds": 319,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:08:14.352Z"
+    },
+    {
+      "id": "0aaa7f13-b9d6-4d81-afe7-e214e6bdcd64",
+      "youtube_video_id": "kUtwgy-16x4",
+      "title": "Ghazal: \" Dil Mein Ek Lehr Si Uthi Hai Abhi \" By Ghulam Ali  PTN-USA",
+      "singer_name": "PTN-USA",
+      "film_name": null,
+      "decade": "1970s",
+      "genre": "Ghazal",
+      "thumbnail_url": "https://img.youtube.com/vi/kUtwgy-16x4/hqdefault.jpg",
+      "duration_seconds": 733,
+      "play_count": 0,
+      "created_at": "2026-06-30T15:08:14.355Z"
     }
   ],
   "collections": [
